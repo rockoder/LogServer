@@ -1,0 +1,37 @@
+Problem Statement
+=================
+Write a Logging server which would allow N number of clients to send the LOG message to server. The server should maintain all logs in same log file, prefix with Client-id/name. 
+
+[date] [time] [Client-id/name] This is client X log message
+
+The file integrity is maintained and there should NOT be loss of any log message by any client.
+
+To Build
+========
+Requires pthread library on the system and compiler with C++11 support. Below script file uses g++ with -std=c++11 option.
+./build.sh
+
+To Start Server
+===============
+cd bin
+./server 9999 logfile.txt
+
+To Start Single Client
+======================
+cd bin
+./client 127.0.0.1 9999 1
+
+To Spwan Multiple Clients
+=========================
+cd bin
+for i in {1..10}; do ./client 127.0.0.1 9999 $i & done
+
+To View Log File
+================
+cd bin
+tail -f logfile.txt
+
+Future Enhancements
+===================
+- Covert server process into deamon
+- Write a Makefile
