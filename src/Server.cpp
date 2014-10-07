@@ -65,11 +65,11 @@ void handle(int sock)
 
     if (read_size == 0)
     {
-        cout << "Client disconnected" << endl;
+        cout << "Client got disconnected." << endl;
     }
     else if (read_size == -1)
     {
-        cerr << "recv failed" << endl;
+        cerr << "Error in receiving message." << endl;
     }
 }
 
@@ -102,7 +102,7 @@ int main(int argc, char* argv[])
 
     if (getaddrinfo(NULL, serverPort.c_str(), &hints, &res) != 0)
     {
-        cerr << "getaddrinfo error" << endl;
+        cerr << "Error in getaddrinfo." << endl;
         return -1;
     }
 
@@ -110,20 +110,20 @@ int main(int argc, char* argv[])
 
     if (sock == -1)
     {
-        cerr << "Could not create socket" << endl;
+        cerr << "Could not create socket." << endl;
         return -1;
     }
 
     /* Enable the socket to reuse the address */
     if (setsockopt(sock, SOL_SOCKET, SO_REUSEADDR, &reuseaddr, sizeof(int)) == -1)
     {
-        cerr << "setsockopt error" << endl;
+        cerr << "Error in setsockopt." << endl;
         return -1;
     }
 
     if (bind(sock, res->ai_addr, res->ai_addrlen) == -1)
     {
-        cerr << "bind error" << endl;
+        cerr << "Error in bind." << endl;
         return -1;
     }
 
@@ -131,7 +131,7 @@ int main(int argc, char* argv[])
 
     if (listen(sock, BACKLOG) == -1)
     {
-        cerr << "listen error" << endl;
+        cerr << "Error in listen." << endl;
         return -1;
     }
 
@@ -146,7 +146,7 @@ int main(int argc, char* argv[])
 
         if (newsock == -1)
         {
-            cerr << "accept error" << endl;
+            cerr << "Error in accept." << endl;
             return -1;
         }
         else

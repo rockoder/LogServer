@@ -33,5 +33,5 @@ tail -f logfile.txt
 
 Future Enhancements
 ===================
-- Covert server process into deamon
+- Convert server process into deamon
 - Write a Makefile
